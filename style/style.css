@@ -1,0 +1,163 @@
+@charset "UTF-8";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body,
+html {
+  min-width: 100%;
+  min-height: 100vh;
+  font-family: sans-serif;
+}
+
+body {
+  display: flex;
+  flex-flow: column;
+  height: 1000px;
+}
+
+.navbar {
+  padding: 10px;
+}
+
+.content {
+  flex-grow: 1;
+}
+
+@media (orientation: landscape) {
+  .content {
+    width: 80%;
+    margin: auto;
+  }
+}
+
+.dual-box {
+  display: flex;
+  flex-flow: row nowrap;
+  max-width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.dual-box>img,
+.dual-box h1,
+.dual-box span {
+  flex-basis: 100%;
+  min-width: 0;
+}
+
+@media (orientation: landscape) {
+
+  .dual-box>img,
+  .dual-box h1,
+  .dual-box span {
+    flex-basis: 50%;
+  }
+}
+
+.dual-box>h1 {
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.squisher {
+  padding: 10px;
+}
+
+@media (orientation: landscape) {
+  .squisher {
+    padding: 0 10% 0 10%;
+  }
+}
+
+@media (orientation: landscape) {
+  p {
+    font-size: 1.5em;
+  }
+}
+
+footer {
+  box-sizing: border-box;
+  text-align: center;
+  width: 100%;
+  padding: 100px;
+  background-color: #212529;
+  color: white;
+}
+
+.rounded-card {
+  margin: 30px;
+  padding: 30px;
+  border-radius: 20px;
+  display: inline-block;
+  font-size: 2em;
+}
+
+#city-input {
+  background: #99f1fa;
+  background: linear-gradient(0deg, #bbebf0 0%, #0e1e74 100%);
+  color: white;
+  display: flex;
+  flex-flow: column;
+}
+
+.city-text-box {
+  padding-top: 100px;
+  color: #202020;
+  border-bottom: 2px #202020 solid;
+  transition: border-bottom 0.2s;
+}
+
+.city-text-box:focus {
+  border-bottom: 2px white solid;
+  outline: none;
+}
+
+.city-text-box:empty:not(:focus)::before {
+  content: "Your city here";
+  pointer-events: none;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.weather-tile {
+  background: #5275be;
+  color: white;
+  display: inline-flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.weather-tile .temperature::after {
+  content: "°";
+}
+
+.weather-tile .feels-like {
+  font-size: 0.5em;
+}
+
+.weather-tile .feels-like::after {
+  content: "°";
+}
+
+.weather-tile .feels-like::before {
+  content: "Feels like ";
+}
+
+.weather-tile .wind {
+  font-size: 0.5em;
+}
+
+.weather-tile .wind>i {
+  vertical-align: middle;
+}
+
+.weather-tile .time {
+  font-size: 0.75em;
+  background-color: black;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/*# sourceMappingURL=style.css.map */

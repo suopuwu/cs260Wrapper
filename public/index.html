@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Big Brain Notes</title>
+  <link rel="stylesheet" href="/css/select.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="icon" href="/images/logo.png">
+  <link rel="stylesheet" href="/lib/ripple.css">
+  <link rel="stylesheet" href="/css/loader.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="/lib/mSnackbar.js"></script>
+  <script src="/lib/suopLib.js"></script>
+  <script src="/lib/characterData.js"></script>
+  <script src="/lib/select-screen.js"></script>
+  <!--  see bigBrainNotes.com/licenses for information on the libraries used and their licenses -->
+</head>
+
+<body>
+  <div id="right-click-menu" class="transform-collapsed">
+    <a class="ripple" href="javascript:;" id="menuRename">
+      <i class="material-icons">edit</i>Rename</a>
+    <a class="ripple" href="javascript:;" id="menuRecolor">
+      <i class="material-icons">palette</i>Recolor</a>
+    <a class="ripple" href="javascript:;" id="menuReimage">
+      <i class="material-icons">image</i>Image</a>
+    <a class="ripple" href="javascript:;" id="menuDelete">
+      <i class="material-icons">delete</i>Delete</a>
+  </div>
+  <div class="nav-menu shadow-2">
+    <span class="search-bar ripple">
+      <label for="search-bar"><i class="material-icons" id="search-label-icon">search</i></label>
+      <input type="text" id="search-bar" autocomplete="off">
+    </span>
+    <h1>Rename Player</h1>
+    To rename a player, right click their tile.
+    <div class="flex-grow-spacer"></div>
+    <span id="sign-in-button">
+      Loading... <i class="material-icons loading-icon">refresh</i>
+    </span>
+  </div>
+  <div class="loader" id="main-loader">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+    <div id="loading-text">
+
+      <h3>LOADING...</h3>
+    </div>
+  </div>
+  <div class="select-screens" id="main-select-screen" style="display:none">
+    <input type="radio" name="select-screen" id="css-radio" value="character" checked>
+    <input type="radio" name="select-screen" id="pss-radio" value="player">
+    <label class="ss-tab ripple" id="css-tab" for="css-radio">CHARACTER</label>
+    <label class="ss-tab ripple" id="pss-tab" for="pss-radio">PLAYER</label>
+    <div class="tile-holder" id="css">
+      <span class="tile-button" id="mario-tile" style="background-color: #ff4026;">
+        <span class="background-number">01</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/mario.png')"></span>
+        <span class="name-plate">mario</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>01</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="donkey-kong-tile" style="background-color: #f9da4a;">
+        <span class="background-number">02</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/donkey%20kong.png')"></span>
+        <span class="name-plate">donkey kong</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>02</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="link-tile" style="background-color: #1c94c3;">
+        <span class="background-number">03</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/link.png')"></span>
+        <span class="name-plate">link</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>03</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="samus-tile" style="background-color: #353f56;">
+        <span class="background-number">04</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/samus.png')"></span>
+        <span class="name-plate">samus</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>04</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="dark-samus-tile" style="background-color: #3d395e;">
+        <span class="background-number">04ᵋ</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/dark%20samus.png')"></span>
+        <span class="name-plate">dark samus</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>04ᵋ</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="yoshi-tile" style="background-color: #83cd65;">
+        <span class="background-number">05</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/yoshi.png')"></span>
+        <span class="name-plate">yoshi</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>05</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="kirby-tile" style="background-color: #fed6e3;">
+        <span class="background-number">06</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/kirby.png')"></span>
+        <span class="name-plate">kirby</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>06</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="fox-tile" style="background-color: #307cdf;">
+        <span class="background-number">07</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/fox.png')"></span>
+        <span class="name-plate">fox</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>07</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="pikachu-tile" style="background-color: #ffb912;">
+        <span class="background-number">08</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/pikachu.png')"></span>
+        <span class="name-plate">pikachu</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>08</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="luigi-tile" style="background-color: #5ea444;">
+        <span class="background-number">09</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/luigi.png')"></span>
+        <span class="name-plate">luigi</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>09</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="ness-tile" style="background-color: #de413d;">
+        <span class="background-number">10</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/ness.png')"></span>
+        <span class="name-plate">ness</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>10</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="captain-falcon-tile" style="background-color: #8e8adc;">
+        <span class="background-number">11</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/captain%20falcon.png')"></span>
+        <span class="name-plate">captain falcon</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>11</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="jigglypuff-tile" style="background-color: #f29bf6;">
+        <span class="background-number">12</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/jigglypuff.png')"></span>
+        <span class="name-plate">jigglypuff</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>12</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="peach-tile" style="background-color: #f5c9f0;">
+        <span class="background-number">13</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/peach.png')"></span>
+        <span class="name-plate">peach</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>13</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="daisy-tile" style="background-color: #f0bb2c;">
+        <span class="background-number">13ᵋ</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/daisy.png')"></span>
+        <span class="name-plate">daisy</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>13ᵋ</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="bowser-tile" style="background-color: #44745e;">
+        <span class="background-number">14</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/bowser.png')"></span>
+        <span class="name-plate">bowser</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>14</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="ice-climbers-tile" style="background-color: #a0cafe;">
+        <span class="background-number">15</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/ice%20climbers.png')"></span>
+        <span class="name-plate">ice climbers</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>15</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="sheik-tile" style="background-color: #756fd0;">
+        <span class="background-number">16</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/sheik.png')"></span>
+        <span class="name-plate">sheik</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>16</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="zelda-tile" style="background-color: #fdeaa4;">
+        <span class="background-number">17</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/zelda.png')"></span>
+        <span class="name-plate">zelda</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>17</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="dr-mario-tile" style="background-color: #e86c6d;">
+        <span class="background-number">18</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/dr%20mario.png')"></span>
+        <span class="name-plate">dr mario</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>18</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="pichu-tile" style="background-color: #dedc1f;">
+        <span class="background-number">19</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/pichu.png')"></span>
+        <span class="name-plate">pichu</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>19</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="falco-tile" style="background-color: #69b0de;">
+        <span class="background-number">20</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/falco.png')"></span>
+        <span class="name-plate">falco</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>20</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="marth-tile" style="background-color: #5da8c8;">
+        <span class="background-number">21</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/marth.png')"></span>
+        <span class="name-plate">marth</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>21</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="lucina-tile" style="background-color: #7ea6c7;">
+        <span class="background-number">21ᵋ</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/lucina.png')"></span>
+        <span class="name-plate">lucina</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>21ᵋ</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="young-link-tile" style="background-color: #a5d160;">
+        <span class="background-number">22</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/young%20link.png')"></span>
+        <span class="name-plate">young link</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>22</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="ganondorf-tile" style="background-color: #7974a4;">
+        <span class="background-number">23</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/ganondorf.png')"></span>
+        <span class="name-plate">ganondorf</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>23</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="mewtwo-tile" style="background-color: #927bc5;">
+        <span class="background-number">24</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/mewtwo.png')"></span>
+        <span class="name-plate">mewtwo</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>24</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="roy-tile" style="background-color: #74b65b;">
+        <span class="background-number">25</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/roy.png')"></span>
+        <span class="name-plate">roy</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>25</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="chrom-tile" style="background-color: #b4b4cf;">
+        <span class="background-number">25ᵋ</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/chrom.png')"></span>
+        <span class="name-plate">chrom</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>25ᵋ</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="mr-game & watch-tile" style="background-color: #a4a190;">
+        <span class="background-number">26</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/mr%20game & watch.png')"></span>
+        <span class="name-plate">mr game & watch</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>26</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="meta-knight-tile" style="background-color: #5367b0;">
+        <span class="background-number">27</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/meta%20knight.png')"></span>
+        <span class="name-plate">meta knight</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>27</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="pit-tile" style="background-color: #acdafa;">
+        <span class="background-number">28</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/pit.png')"></span>
+        <span class="name-plate">pit</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>28</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="dark-pit-tile" style="background-color: #875cbe;">
+        <span class="background-number">28ᵋ</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/dark%20pit.png')"></span>
+        <span class="name-plate">dark pit</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>28ᵋ</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="zero-suit samus-tile" style="background-color: #205ba4;">
+        <span class="background-number">29</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/zero%20suit samus.png')"></span>
+        <span class="name-plate">zero suit samus</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>29</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="wario-tile" style="background-color: #fee71f;">
+        <span class="background-number">30</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/wario.png')"></span>
+        <span class="name-plate">wario</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>30</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="snake-tile" style="background-color: #658198;">
+        <span class="background-number">31</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/snake.png')"></span>
+        <span class="name-plate">snake</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>31</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="ike-tile" style="background-color: #b64f3e;">
+        <span class="background-number">32</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/ike.png')"></span>
+        <span class="name-plate">ike</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>32</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="squirtle-tile" style="background-color: #69b0de;">
+        <span class="background-number">33</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/squirtle.png')"></span>
+        <span class="name-plate">squirtle</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>33</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="ivysaur-tile" style="background-color: #83cd65;">
+        <span class="background-number">34</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/ivysaur.png')"></span>
+        <span class="name-plate">ivysaur</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>34</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="charizard-tile" style="background-color: #ffc004;">
+        <span class="background-number">35</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/charizard.png')"></span>
+        <span class="name-plate">charizard</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>35</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="diddy-kong-tile" style="background-color: #e05a52;">
+        <span class="background-number">36</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/diddy%20kong.png')"></span>
+        <span class="name-plate">diddy kong</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>36</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="lucas-tile" style="background-color: #e06833;">
+        <span class="background-number">37</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/lucas.png')"></span>
+        <span class="name-plate">lucas</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>37</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="sonic-tile" style="background-color: #659deb;">
+        <span class="background-number">38</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/sonic.png')"></span>
+        <span class="name-plate">sonic</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>38</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="king-dedede-tile" style="background-color: #fce87b;">
+        <span class="background-number">39</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/king%20dedede.png')"></span>
+        <span class="name-plate">king dedede</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>39</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="olimar-tile" style="background-color: #ccefb0;">
+        <span class="background-number">40</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/olimar.png')"></span>
+        <span class="name-plate">olimar</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>40</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="lucario-tile" style="background-color: #b8e3fc;">
+        <span class="background-number">41</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/lucario.png')"></span>
+        <span class="name-plate">lucario</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>41</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="r-o b-tile" style="background-color: #b2b8bd;">
+        <span class="background-number">42</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/r%20o b.png')"></span>
+        <span class="name-plate">r o b</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>42</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="toon-link-tile" style="background-color: #8ce689;">
+        <span class="background-number">43</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/toon%20link.png')"></span>
+        <span class="name-plate">toon link</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>43</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="wolf-tile" style="background-color: #cccccc;">
+        <span class="background-number">44</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/wolf.png')"></span>
+        <span class="name-plate">wolf</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>44</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="villager-tile" style="background-color: #83a88e;">
+        <span class="background-number">45</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/villager.png')"></span>
+        <span class="name-plate">villager</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>45</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="mega-man-tile" style="background-color: #86c1e0;">
+        <span class="background-number">46</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/mega%20man.png')"></span>
+        <span class="name-plate">mega man</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>46</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="wii-fit trainer-tile" style="background-color: #99d481;">
+        <span class="background-number">47</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/wii%20fit trainer.png')"></span>
+        <span class="name-plate">wii fit trainer</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>47</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="rosalina-& luma-tile" style="background-color: #98d5cd;">
+        <span class="background-number">48</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/rosalina%20& luma.png')"></span>
+        <span class="name-plate">rosalina & luma</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>48</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="little-mac-tile" style="background-color: #5d8f72;">
+        <span class="background-number">49</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/little%20mac.png')"></span>
+        <span class="name-plate">little mac</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>49</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="greninja-tile" style="background-color: #5673a5;">
+        <span class="background-number">50</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/greninja.png')"></span>
+        <span class="name-plate">greninja</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>50</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="mii-brawler-tile" style="background-color: #d0504d;">
+        <span class="background-number">51α</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/mii%20brawler.png')"></span>
+        <span class="name-plate">mii brawler</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>51α</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="mii-gunner-tile" style="background-color: #f0bb2c;">
+        <span class="background-number">51β</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/mii%20gunner.png')"></span>
+        <span class="name-plate">mii gunner</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>51β</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="mii-swordfighter-tile" style="background-color: #5dc1e6;">
+        <span class="background-number">51γ</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/mii%20swordfighter.png')"></span>
+        <span class="name-plate">mii swordfighter</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>51γ</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="palutena-tile" style="background-color: #91e5c1;">
+        <span class="background-number">54</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/palutena.png')"></span>
+        <span class="name-plate">palutena</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>54</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="pac-man-tile" style="background-color: #fcb541;">
+        <span class="background-number">55</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/pac%20man.png')"></span>
+        <span class="name-plate">pac man</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>55</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="robin-tile" style="background-color: #c387d9;">
+        <span class="background-number">56</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/robin.png')"></span>
+        <span class="name-plate">robin</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>56</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="shulk-tile" style="background-color: #d5647a;">
+        <span class="background-number">57</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/shulk.png')"></span>
+        <span class="name-plate">shulk</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>57</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="bowser-jr-tile" style="background-color: #59bf38;">
+        <span class="background-number">58</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/bowser%20jr.png')"></span>
+        <span class="name-plate">bowser jr</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>58</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="duck-hunt-tile" style="background-color: #8c5d3a;">
+        <span class="background-number">59</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/duck%20hunt.png')"></span>
+        <span class="name-plate">duck hunt</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>59</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="ryu-tile" style="background-color: #d0504d;">
+        <span class="background-number">60</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/ryu.png')"></span>
+        <span class="name-plate">ryu</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>60</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="ken-tile" style="background-color: #cdd7dc;">
+        <span class="background-number">60ᵋ</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/ken.png')"></span>
+        <span class="name-plate">ken</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>60ᵋ</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="cloud-tile" style="background-color: #419384;">
+        <span class="background-number">61</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/cloud.png')"></span>
+        <span class="name-plate">cloud</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>61</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="corrin-tile" style="background-color: #63a7c0;">
+        <span class="background-number">62</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/corrin.png')"></span>
+        <span class="name-plate">corrin</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>62</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="bayonetta-tile" style="background-color: #a5a1e0;">
+        <span class="background-number">63</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/bayonetta.png')"></span>
+        <span class="name-plate">bayonetta</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>63</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="inkling-tile" style="background-color: #f02d7d;">
+        <span class="background-number">64</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/inkling.png')"></span>
+        <span class="name-plate">inkling</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>64</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="ridley-tile" style="background-color: #71456f;">
+        <span class="background-number">65</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/ridley.png')"></span>
+        <span class="name-plate">ridley</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>65</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="simon-tile" style="background-color: #76150e;">
+        <span class="background-number">66</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/simon.png')"></span>
+        <span class="name-plate">simon</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>66</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="richter-tile" style="background-color: #2a6db0;">
+        <span class="background-number">66ᵋ</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/richter.png')"></span>
+        <span class="name-plate">richter</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>66ᵋ</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="king-k rool-tile" style="background-color: #65873b;">
+        <span class="background-number">67</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/king%20k rool.png')"></span>
+        <span class="name-plate">king k rool</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>67</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="isabelle-tile" style="background-color: #c4d37e;">
+        <span class="background-number">68</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/isabelle.png')"></span>
+        <span class="name-plate">isabelle</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>68</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="incineroar-tile" style="background-color: #ffd902;">
+        <span class="background-number">69</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/incineroar.png')"></span>
+        <span class="name-plate">incineroar</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>69</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="piranha-plant-tile" style="background-color: #00aa82;">
+        <span class="background-number">70</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/piranha%20plant.png')"></span>
+        <span class="name-plate">piranha plant</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>70</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="joker-tile" style="background-color: #b41201;">
+        <span class="background-number">71</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/joker.png')"></span>
+        <span class="name-plate">joker</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>71</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="hero-tile" style="background-color: #ccb3f4;">
+        <span class="background-number">72</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/hero.png')"></span>
+        <span class="name-plate">hero</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>72</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="banjo-& kazooie-tile" style="background-color: #fcdd76;">
+        <span class="background-number">73</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/banjo%20& kazooie.png')"></span>
+        <span class="name-plate">banjo & kazooie</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>73</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="terry-bogard-tile" style="background-color: #6eb5ff;">
+        <span class="background-number">74</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/terry%20bogard.png')"></span>
+        <span class="name-plate">terry bogard</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>74</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="byleth-tile" style="background-color: #cee0d4;">
+        <span class="background-number">75</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/byleth.png')"></span>
+        <span class="name-plate">byleth</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>75</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="min-min-tile" style="background-color: #ffff5a;">
+        <span class="background-number">76</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/min%20min.png')"></span>
+        <span class="name-plate">min min</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>76</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="steve-tile" style="background-color: #5abeff;">
+        <span class="background-number">77</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/steve.png')"></span>
+        <span class="name-plate">steve</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>77</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="sephiroth-tile" style="background-color: #374b4b;">
+        <span class="background-number">78</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/sephiroth.png')"></span>
+        <span class="name-plate">sephiroth</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>78</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="pyra-tile" style="background-color: #ff4026;">
+        <span class="background-number">79</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/pyra.png')"></span>
+        <span class="name-plate">pyra</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>79</span></span><span></span>
+        </span>
+      </span>
+      <span class="tile-button" id="mythra-tile" style="background-color: #69e6c3;">
+        <span class="background-number">80</span>
+        <span class="character-image" onload="$(obj).fadeIn(1000)"
+          style="background-image: url('images/characters/mythra.png')"></span>
+        <span class="name-plate">mythra</span>
+        <span class="foreground-number">
+          <span class="inner-foreground-number"><span>80</span></span><span></span>
+        </span>
+      </span>
+    </div>
+
+    <!--divider for pss-->
+
+
+    <div class="tile-holder" id="pss">
+    </div>
+    <div class="fab" id="add-char-fab"> + </div>
+  </div>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-storage.js"></script>
+
+
+  <script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+      apiKey: "AIzaSyCOnI5-c3aDvArEgIDVdYY4N7zQn0d6zI0",
+      authDomain: "big-brain-notes.firebaseapp.com",
+      databaseURL: "https://big-brain-notes-default-rtdb.firebaseio.com",
+      projectId: "big-brain-notes",
+      storageBucket: "big-brain-notes.appspot.com",
+      messagingSenderId: "647678453933",
+      appId: "1:647678453933:web:8f7e629a15fc94487cbe24",
+      measurementId: "G-MD0VVB0M36"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    var database = firebase.database();
+    var storage = firebase.storage();
+    var storageRef = storage.ref();
+  </script>
+  <script src="/lib/auth.js"></script>
+
+</body>
+
+</html>

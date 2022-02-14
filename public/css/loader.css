@@ -1,0 +1,98 @@
+.loader {
+  height: 100%;
+  background: radial-gradient(ellipse at bottom, #1B2735 0%, #000000 100%);
+  overflow: hidden;
+  background-color: #000;
+  color: white;
+  font-family: "Fjalla One", sans-serif;
+  font-size: 50px;
+}
+
+.loader > div {
+  width: 100%;
+}
+
+#main-loader {
+  grid-column-start: 2;
+}
+
+#loading-text {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#stars {
+  width: 1px;
+  height: 1px;
+  background: transparent;
+  box-shadow: 532px 38px #FFF , 1164px 287px #FFF , 577px 1256px #FFF , 704px 953px #FFF , 971px 991px #FFF , 610px 723px #FFF , 1399px 1893px #FFF , 1344px 248px #FFF , 1637px 237px #FFF , 1935px 98px #FFF , 841px 1053px #FFF , 839px 1759px #FFF , 492px 1060px #FFF , 779px 1006px #FFF , 1527px 1679px #FFF , 1487px 121px #FFF , 598px 1341px #FFF , 1423px 1750px #FFF , 997px 1053px #FFF , 621px 1299px #FFF , 798px 644px #FFF , 421px 1828px #FFF , 369px 88px #FFF , 1097px 1642px #FFF , 792px 1864px #FFF , 1654px 1133px #FFF , 55px 399px #FFF , 1814px 1073px #FFF , 954px 1772px #FFF , 376px 1155px #FFF , 1430px 1735px #FFF , 314px 1703px #FFF , 1659px 911px #FFF , 969px 1585px #FFF , 1980px 1962px #FFF , 576px 1749px #FFF , 1742px 1875px #FFF , 1818px 1941px #FFF , 1230px 1389px #FFF , 1629px 667px #FFF , 1734px 8px #FFF , 786px 1922px #FFF , 1207px 1747px #FFF , 213px 664px #FFF , 1995px 977px #FFF , 250px 651px #FFF , 1765px 936px #FFF , 139px 835px #FFF , 532px 1622px #FFF , 1537px 274px #FFF;
+  -webkit-animation: animStar 50s linear infinite;
+          animation: animStar 50s linear infinite;
+}
+#stars:after {
+  content: " ";
+  position: absolute;
+  top: 2000px;
+  width: 1px;
+  height: 1px;
+  background: transparent;
+  box-shadow: 532px 38px #FFF , 1164px 287px #FFF , 577px 1256px #FFF , 704px 953px #FFF , 971px 991px #FFF , 610px 723px #FFF , 1399px 1893px #FFF , 1344px 248px #FFF , 1637px 237px #FFF , 1935px 98px #FFF , 841px 1053px #FFF , 839px 1759px #FFF , 492px 1060px #FFF , 779px 1006px #FFF , 1527px 1679px #FFF , 1487px 121px #FFF , 598px 1341px #FFF , 1423px 1750px #FFF , 997px 1053px #FFF , 621px 1299px #FFF , 798px 644px #FFF , 421px 1828px #FFF , 369px 88px #FFF , 1097px 1642px #FFF , 792px 1864px #FFF , 1654px 1133px #FFF , 55px 399px #FFF , 1814px 1073px #FFF , 954px 1772px #FFF , 376px 1155px #FFF , 1430px 1735px #FFF , 314px 1703px #FFF , 1659px 911px #FFF , 969px 1585px #FFF , 1980px 1962px #FFF , 576px 1749px #FFF , 1742px 1875px #FFF , 1818px 1941px #FFF , 1230px 1389px #FFF , 1629px 667px #FFF , 1734px 8px #FFF , 786px 1922px #FFF , 1207px 1747px #FFF , 213px 664px #FFF , 1995px 977px #FFF , 250px 651px #FFF , 1765px 936px #FFF , 139px 835px #FFF , 532px 1622px #FFF , 1537px 274px #FFF;
+}
+
+#stars2 {
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  box-shadow: 79px 770px #FFF , 1225px 1192px #FFF , 679px 423px #FFF , 890px 1507px #FFF , 212px 1667px #FFF , 1814px 929px #FFF , 980px 551px #FFF , 1141px 154px #FFF , 1580px 1346px #FFF , 860px 300px #FFF , 1359px 779px #FFF , 1697px 814px #FFF , 630px 1985px #FFF , 1089px 1832px #FFF , 569px 456px #FFF , 529px 1867px #FFF , 1856px 1166px #FFF , 1204px 1306px #FFF , 1635px 341px #FFF , 330px 411px #FFF;
+  -webkit-animation: animStar 100s linear infinite;
+          animation: animStar 100s linear infinite;
+}
+#stars2:after {
+  content: " ";
+  position: absolute;
+  top: 2000px;
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  box-shadow: 79px 770px #FFF , 1225px 1192px #FFF , 679px 423px #FFF , 890px 1507px #FFF , 212px 1667px #FFF , 1814px 929px #FFF , 980px 551px #FFF , 1141px 154px #FFF , 1580px 1346px #FFF , 860px 300px #FFF , 1359px 779px #FFF , 1697px 814px #FFF , 630px 1985px #FFF , 1089px 1832px #FFF , 569px 456px #FFF , 529px 1867px #FFF , 1856px 1166px #FFF , 1204px 1306px #FFF , 1635px 341px #FFF , 330px 411px #FFF;
+}
+
+#stars3 {
+  width: 3px;
+  height: 3px;
+  background: transparent;
+  box-shadow: 964px 14612px #FFF , 1089px 1825px #FFF , 134px 1707px #FFF , 1787px 1641px #FFF , 1460px 435px #FFF , 802px 966px #FFF , 1142px 1761px #FFF , 1242px 1116px #FFF , 86px 1122px #FFF , 1878px 716px #FFF;
+  -webkit-animation: animStar 150s linear infinite;
+          animation: animStar 150s linear infinite;
+}
+#stars3:after {
+  content: " ";
+  position: absolute;
+  top: 2000px;
+  width: 3px;
+  height: 3px;
+  background: transparent;
+  box-shadow: 964px 14612px #FFF , 1089px 1825px #FFF , 134px 1707px #FFF , 1787px 1641px #FFF , 1460px 435px #FFF , 802px 966px #FFF , 1142px 1761px #FFF , 1242px 1116px #FFF , 86px 1122px #FFF , 1878px 716px #FFF;
+}
+
+@-webkit-keyframes animStar {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-2000px);
+  }
+}
+
+@keyframes animStar {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-2000px);
+  }
+}/*# sourceMappingURL=loader.css.map */

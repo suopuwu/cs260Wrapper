@@ -1,0 +1,107 @@
+$background-color: rgb(33, 37, 41)
+
+*
+  margin: 0
+  padding: 0
+
+body, html
+  min-width: 100%
+  min-height: 100vh
+  font-family: sans-serif
+
+body
+  display: flex
+  flex-flow: column
+
+.navbar
+  padding: 10px
+
+.content
+  flex-grow: 1
+  @media (orientation: landscape)
+    width: 80%
+    margin: auto
+
+.dual-box
+  display: flex
+  flex-flow: row nowrap
+  max-width: 100%
+  justify-content: center
+  align-items: center
+  > img, h1, span
+    flex-basis: 100%
+    min-width: 0
+    @media (orientation: landscape)
+      flex-basis: 50%
+  > h1
+    box-sizing: border-box
+    padding: 20px
+
+.squisher
+  padding: 10px
+  @media (orientation: landscape)
+    padding: 0 10% 0 10%
+
+p
+  @media (orientation: landscape)
+    font-size: 1.5em
+
+footer
+  box-sizing: border-box
+  text-align: center
+  width: 100%
+  padding: 100px
+  background-color: $background-color
+  color: white
+
+.rounded-card
+  margin: 30px
+  padding: 30px
+  border-radius: 20px
+  display: inline-block
+  font-size: 2em
+
+#city-input
+  background: rgb(153,241,250)
+  background: linear-gradient(0deg, rgba(187,235,240,1) 0%, rgba(14,30,116,1) 100%)
+  color: white
+  display: flex
+  flex-flow: column
+
+.city-text-box
+  padding-top: 100px
+  color: #202020
+  border-bottom: 2px #202020 solid
+  transition: border-bottom 0.2s
+  &:focus
+    border-bottom: 2px white solid
+    outline: none
+  &:empty:not(:focus)::before
+    content: "Your city here"
+    pointer-events: none
+    color: rgba(0, 0, 0, 0.5)
+
+.weather-tile
+  background: #5275be
+  color: white
+  display: inline-flex
+  flex-flow: column nowrap
+  align-items: center
+  .temperature
+    &::after
+      content: "°"
+  .feels-like
+    font-size: 0.5em
+    &::after
+      content: "°"
+    &::before
+      content: "Feels like "
+  .wind
+    font-size: 0.5em
+    > i
+      vertical-align: middle
+  .time
+    font-size: 0.75em
+    background-color: black
+    padding: 10px
+    border-radius: 10px

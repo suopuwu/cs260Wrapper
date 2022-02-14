@@ -1,0 +1,79 @@
+@use 'base'
+.main-container
+  flex-grow: 1
+  min-height: calc(100% - 1.4vmax)
+  display: grid
+  grid-template-columns: 33.333% 33.333% 33.333%
+  background-color: #add
+  padding: 0.7vmax
+  grid-column-start: 2
+  transition: background-color 0.2s
+  @media (orientation: portrait)
+    display: flex
+    flex-flow: column nowrap
+
+.note-column
+  flex-grow: 1
+  display: inline-flex
+  flex-flow: column nowrap
+  align-items: center
+  width: 100%
+
+.note-card
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+  background-color: white
+  width: calc(100% - 1.4vmax)
+  display: inline-flex
+  flex-flow: column nowrap
+  margin: 0.7vmax
+
+.note-title
+  background-color: #212121
+  color: white
+  padding: 0.7vw
+  font-size: 15px
+  display: flex
+  justify-content: space-between
+  align-items: center
+  font-family: 'Fjalla One', sans-serif
+
+  > i
+    font-size: 1.3em
+
+.note-menu
+  cursor: pointer
+
+.note-body
+  display: flex
+  width: 100%
+
+  > span
+    width: 100%
+
+.note-image
+  width: 100%
+  cursor: pointer
+
+  + img
+    cursor: pointer
+
+.note-body > textarea
+  margin: 0.7vmax
+  width: calc(100% - 1.4vmax)
+  font-size: 12px
+  height: calc(100% - 1.4vmax)
+  border: none
+  resize: none
+  border-bottom: solid 1px #cfcfcf
+  transition: 0.3s all
+
+  &:focus
+    outline: none
+    border-bottom: solid 1px #212121
+
+h2
+  font-size: 1.2em
+
+#nav-back-arrow
+  @extend %flex-align-center
+  padding-bottom: 10px

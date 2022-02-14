@@ -1,0 +1,194 @@
+@use 'base'
+.select-screens
+  grid-column-start: 2
+  display: inline-flex
+  flex-flow: row wrap
+  justify-content: center
+  align-content: flex-start
+
+.tile-holder
+  flex-basis: 100%
+  padding: 10px
+  display: inline-flex
+  flex-flow: row wrap
+  background-color: #1b1b1b
+  align-content: flex-start
+  user-select: none
+  z-index: 1
+  min-height: 100%
+
+.inline-icon
+  padding-left: 5px
+  padding-right: 5px
+
+/*select screens
+
+.select-screens > input
+  display: none
+
+.ss-tab
+  padding: 10px
+  flex-grow: 1
+  font-size: 2.5em
+  text-align-last: center
+  font-family: 'Fjalla one', sans-serif
+  color: #515151
+  cursor: pointer
+  user-select: none
+  background-color: white
+
+#css-radio:checked ~ #css-tab, #pss-radio:checked ~ #pss-tab
+  background-color: #1b1b1b
+  color: white
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22)
+  cursor: default
+
+#css-radio:checked ~ #pss, #pss-radio:checked ~ #css, #css-radio:checked ~ #add-char-fab
+  display: none
+
+/*sidebar items
+
+.search-bar
+  display: flex
+  justify-content: flex-start
+  margin-bottom: 10px
+  align-items: center
+
+#search-label-icon
+  cursor: pointer
+
+/*char tiles
+
+.tile-button
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.12), 0 0 0 rgba(0, 0, 0, 0.24)
+  transition: all 0.5s
+  display: inline-block
+  width: 16.666%
+  z-index: 0
+  display: flex
+  flex-flow: row nowrap
+  justify-content: center
+  position: relative
+  background-color: antiquewhite
+  cursor: pointer
+  overflow: hidden
+  @media (orientation: portrait)
+    width: 50%
+
+  &:hover
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22)
+    transform: scale(1.05)
+    z-index: 420
+
+  >
+    .character-image
+      width: 100%
+      display: inline-block
+      position: absolute
+      background-size: contain
+      background-position: center
+
+      &:after
+        content: ""
+        display: block
+        padding-bottom: 100%
+
+    .background-number
+      position: absolute
+      align-self: center
+      font-family: 'Fjalla One', sans-serif
+      font-size: 9vw
+      color: rgba(0, 0, 0, 0.4)
+
+    .name-plate
+      width: calc(100% - 6px)
+      font-family: 'Fjalla One', sans-serif
+      background-color: rgba(0, 0, 0, 0.9)
+      align-self: flex-end
+      color: white
+      padding: 3px
+      font-size: 2vw
+      position: absolute
+      text-transform: uppercase
+      word-wrap: break-word
+
+    .foreground-number
+      display: flex
+      z-index: 1
+      flex-flow: row
+
+.inner-foreground-number
+  > span
+    background-color: rgba(0, 0, 0, 0.9)
+    font-family: 'Fjalla One', sans-serif
+    font-size: 1.4vw
+    color: white
+    padding: 4px
+
+    z-index: 1
+
+.tile-button
+  > .foreground-number:last-child
+    flex-grow: 1
+
+  &:after
+    content: ""
+    display: block
+    padding-bottom: 100%
+
+.fab
+  width: 4vmax
+  height: 4vmax
+  background-color: #212121
+  border-radius: 50%
+  transition: all 0.1s ease-in-out
+  font-size: 2.5vmax
+  color: white
+  display: flex
+  justify-content: center
+  align-content: center
+  align-items: center
+  line-height: 70px
+  border: white solid 2px
+  position: fixed
+  right: 2vmax
+  bottom: 2vmax
+  user-select: none
+  cursor: pointer
+  overflow: hidden
+  z-index: 2
+
+  &:hover
+    box-shadow: 0 6px 14px 0 #000
+    transform: scale(1.05)
+
+#right-click-menu
+  @extend %flex-column-nowrap
+  position: absolute
+  z-index: 999
+  background-color: white
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22)
+  border-radius: 5px
+  padding: 10px
+  transition: transform 0.1s
+  transform-origin: top left
+
+  > a
+    @extend %flex-align-center
+    user-drag: none
+    user-select: none
+    -moz-user-select: none
+    -webkit-user-drag: none
+    -webkit-user-select: none
+    -ms-user-select: none
+    flex-flow: row nowrap
+    padding: 10px
+    text-decoration: none
+    color: base.$text-color
+    overflow: hidden
+
+    > i
+      padding-right: 10px
+
+      &:empty
+        padding-right: 0

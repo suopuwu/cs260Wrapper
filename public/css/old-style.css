@@ -1,0 +1,508 @@
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Roboto&display=swap');
+
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+  color: #1b1b1b
+}
+
+body {
+  width: 100%;
+  min-height: 100%;
+  display: grid;
+  grid-template-columns: 19vmax auto;
+  overflow-x: hidden;
+  background-color: black;
+}
+
+a {
+  color: #1b1b1b;
+}
+
+a:focus {
+  color: #1b1b1b;
+}
+
+/*sidebar and main area*/
+.nav-menu {
+  background-color: #fff;
+  padding: 1vmax;
+  display: flex;
+  flex-flow: column;
+  width: 17vmax;
+  height: calc(100% - 2vmax);
+  z-index: 2;
+  position: fixed;
+}
+
+.select-screens {
+  grid-column-start: 2;
+  display: inline-flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: flex-start;
+}
+
+.tile-holder {
+  flex-basis: 100%;
+  padding: 10px;
+  display: inline-flex;
+  flex-flow: row wrap;
+  background-color: #1b1b1b;
+  align-content: flex-start;
+  user-select: none;
+  z-index: 1;
+  min-height: 100%
+}
+
+h1 {
+  font-size: 1.2em;
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: solid #cfcfcf 1px;
+}
+
+
+.nav-menu>h1:first-of-type {
+  border-top: none;
+}
+
+.flex-grow-spacer {
+  flex-grow: 1;
+}
+
+.nav-menu-row {
+  align-items: center;
+}
+
+.flex {
+  display: flex;
+}
+
+span.nav-ui {
+  font-size: 1.2em;
+}
+
+.inline-icon {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sign-in-button {
+  display: flex;
+  border-radius: 10px;
+  justify-content: space-between;
+  padding: 15px;
+  align-items: center;
+  cursor: pointer;
+  background-color: #cfd8dc;
+  transition: all 0.2s;
+  width: calc(100% - 30px);
+}
+
+#sign-in-button>span {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+
+#sign-in-button:hover {
+  background-color: #9ea7aa;
+}
+
+.profile-picture {
+  width: 40px;
+  margin-right: 10px;
+  border-radius: 40px;
+}
+
+
+/*select screens*/
+.select-screens>input {
+  display: none;
+}
+
+.ss-tab {
+  padding: 10px;
+  flex-grow: 1;
+  font-size: 2.5em;
+  text-align-last: center;
+  font-family: 'Fjalla one', sans-serif;
+  color: #515151;
+  cursor: pointer;
+  user-select: none;
+  background-color: white;
+}
+
+#css-radio:checked~#css-tab {
+  background-color: #1b1b1b;
+  color: white;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  cursor: default;
+}
+
+#pss-radio:checked~#pss-tab {
+  background-color: #1b1b1b;
+  color: white;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  cursor: default;
+}
+
+#css-radio:checked~#pss,
+#pss-radio:checked~#css,
+#css-radio:checked~#add-char-fab {
+  display: none;
+}
+
+
+/*sidebar items*/
+.search-bar {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+  align-items: center
+}
+
+input {
+  border: none;
+  border-bottom: #cfcfcf 1px solid;
+  transition: 0.3s all;
+  font-size: 1.5vw;
+  width: 14vmax;
+}
+
+input:focus {
+  outline: none;
+  border-bottom: #212121 1px solid;
+}
+
+#search-label-icon {
+  cursor: pointer;
+}
+
+
+/*char tiles*/
+.tile-button {
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.12), 0 0 0 rgba(0, 0, 0, 0.24);
+  transition: all 0.5s;
+  display: inline-block;
+  width: 16.666%;
+  z-index: 0;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  position: relative;
+  background-color: antiquewhite;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.tile-button:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  transform: scale(1.05);
+  z-index: 420;
+}
+
+.tile-button>.character-image {
+
+  width: 100%;
+  display: inline-block;
+  position: absolute;
+  background-size: contain;
+  background-position: center;
+}
+
+.tile-button>.character-image:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.tile-button>.background-number {
+  position: absolute;
+  align-self: center;
+  font-family: 'Fjalla One', sans-serif;
+  font-size: 9vw;
+  color: rgba(0, 0, 0, 0.4)
+}
+
+.tile-button>.name-plate {
+  width: calc(100% - 6px);
+  font-family: 'Fjalla One', sans-serif;
+  background-color: rgba(0, 0, 0, 0.9);
+  align-self: flex-end;
+  color: white;
+  padding: 3px;
+  font-size: 2vw;
+  position: absolute;
+  text-transform: uppercase;
+  word-wrap: break-word;
+}
+
+.tile-button>.foreground-number {
+  display: flex;
+  flex-flow: row;
+}
+
+.inner-foreground-number>span {
+  background-color: rgba(0, 0, 0, 0.9);
+  font-family: 'Fjalla One', sans-serif;
+  font-size: 1.4vw;
+  color: white;
+  padding: 4px;
+
+}
+
+.inner-foreground-number {
+  z-index: 1;
+}
+
+.tile-button>.foreground-number:last-child {
+  flex-grow: 1;
+}
+
+.tile-button:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.fab {
+  width: 4vmax;
+  height: 4vmax;
+  background-color: #212121;
+  border-radius: 50%;
+  transition: all 0.1s ease-in-out;
+  font-size: 2.5vmax;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  line-height: 70px;
+  border: white solid 2px;
+  position: fixed;
+  right: 2vmax;
+  bottom: 2vmax;
+  user-select: none;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.fab:hover {
+  box-shadow: 0 6px 14px 0 #000;
+  transform: scale(1.05);
+}
+
+
+
+/*if on a phone*/
+@media screen and (orientation:portrait) {
+  body {
+    display: flex;
+    flex-flow: column;
+  }
+
+  .nav-menu {
+    width: calc(100% - 2vmax);
+    height: auto;
+  }
+
+  .tile-button {
+    width: 50%;
+  }
+}
+
+
+
+/*shadows*/
+.shadow-1 {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.shadow-2 {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.shadow-3 {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.shadow-4 {
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
+
+
+/*js effects*/
+.collapsed {
+  width: 0;
+  height: 0;
+}
+
+.transform-collapsed {
+  transform: scale(0);
+}
+
+.display-none {
+  display: none !important;
+}
+
+.invisible {
+  opacity: 0;
+}
+
+#right-click-menu {
+  display: flex;
+  position: absolute;
+  z-index: 999;
+  flex-flow: column;
+  background-color: white;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  border-radius: 5px;
+  padding: 10px;
+  transition: transform 0.1s;
+  transform-origin: top left;
+}
+
+#right-click-menu>a {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  padding: 10px;
+  text-decoration: none;
+  color: #1b1b1b;
+  overflow: hidden;
+}
+
+#right-click-menu>a>i {
+  padding-right: 10px;
+}
+
+#right-click-menu>a>i:empty {
+  padding-right: 0;
+}
+
+.loading-icon {
+  animation: spin 1s infinite linear;
+  display: flex;
+  align-items: center;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loader>h3 {
+  font-size: 2em;
+}
+
+
+
+/*character styles*/
+.main-container {
+  flex-grow: 1;
+  min-height: calc(100% - 1.4vmax);
+  display: grid;
+  grid-template-columns: 33.333% 33.333% 33.333%;
+  background-color: #add;
+  padding: 0.7vmax;
+  grid-column-start: 2;
+  transition: background-color 0.2s;
+}
+
+.note-column {
+  flex-grow: 1;
+  display: inline-flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  width: 100%;
+}
+
+.note-card {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  background-color: white;
+  width: calc(100% - 1.4vmax);
+  display: inline-flex;
+  flex-flow: column nowrap;
+  margin: 0.7vmax;
+}
+
+.note-title {
+  background-color: #212121;
+  color: white;
+  padding: 0.7vw;
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.note-title {
+  font-family: 'Fjalla One', sans-serif;
+
+}
+
+.note-title>i {
+  font-size: 1.3em;
+}
+
+.note-menu {
+  cursor: pointer;
+}
+
+.note-body {
+  display: flex;
+  width: 100%;
+}
+
+.note-body>span {
+  width: 100%;
+}
+
+.note-image {
+  width: 100%;
+  cursor: pointer;
+}
+
+.note-image+img {
+  cursor: pointer;
+}
+
+.note-body>textarea {
+  margin: 0.7vmax;
+  width: calc(100% - 1.4vmax);
+  font-size: 12px;
+  height: calc(100% - 1.4vmax);
+  border: none;
+  resize: none;
+  border-bottom: solid 1px #cfcfcf;
+  transition: 0.3s all;
+
+}
+
+.note-body>textarea:focus {
+  outline: none;
+  border-bottom: solid 1px #212121;
+}
+
+h2 {
+  font-size: 1.2em;
+
+}

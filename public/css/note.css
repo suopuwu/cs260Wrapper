@@ -1,0 +1,288 @@
+@import url("https://fonts.googleapis.com/css2?family=Fjalla+One&family=Roboto&display=swap");
+#nav-back-arrow, .loading-icon, #sign-in-button > span, #sign-in-button, .nav-menu-row {
+  display: flex;
+  align-content: center;
+  align-items: center;
+}
+
+.nav-menu {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+  color: #1b1b1b;
+}
+
+body {
+  width: 100%;
+  min-height: 100%;
+  display: grid;
+  grid-template-columns: 19vmax auto;
+  overflow-x: hidden;
+  background-color: black;
+}
+@media (orientation: portrait) {
+  body {
+    display: flex;
+    flex-flow: column;
+  }
+}
+
+a {
+  color: #1b1b1b;
+  text-decoration: none;
+}
+a:focus {
+  text-decoration: none;
+  color: #1b1b1b;
+}
+a > .material-icons {
+  padding-right: 10px;
+}
+
+.nav-menu {
+  background-color: #fff;
+  padding: 1vmax;
+  width: 17vmax;
+  height: calc(100% - 2vmax);
+  z-index: 2;
+  position: fixed;
+}
+@media (orientation: portrait) {
+  .nav-menu {
+    position: static;
+    height: auto;
+    width: 100%;
+  }
+}
+
+h1 {
+  font-size: 1.2em;
+  margin-top: 15px;
+  padding-top: 10px;
+  border-top: solid #cfcfcf 1px;
+}
+
+.nav-menu > h1:first-of-type {
+  border-top: none;
+}
+
+.flex-grow-spacer {
+  flex-grow: 1;
+}
+
+.nav-menu-row > .material-icons {
+  padding-right: 10px;
+}
+
+#sign-in-button {
+  border-radius: 10px;
+  justify-content: space-between;
+  padding: 15px;
+  cursor: pointer;
+  background-color: #cfd8dc;
+  transition: all 0.2s;
+  width: calc(100% - 30px);
+}
+#sign-in-button > span {
+  overflow: hidden;
+}
+#sign-in-button:hover {
+  background-color: #9ea7aa;
+}
+
+.profile-picture {
+  width: 40px;
+  margin-right: 10px;
+  border-radius: 40px;
+}
+
+span.nav-ui {
+  font-size: 1.2em;
+}
+
+input {
+  border: none;
+  border-bottom: #cfcfcf 1px solid;
+  background-color: transparent;
+  transition: 0.3s all;
+  font-size: 1.5vw;
+  width: 14vmax;
+}
+input:focus {
+  outline: none;
+  border-bottom: #212121 1px solid;
+}
+
+label.file-upload {
+  display: flex;
+  flex-flow: column;
+}
+label.file-upload > span {
+  cursor: pointer;
+  padding: 10px;
+  font-size: 2em;
+}
+label.file-upload > input {
+  display: none;
+}
+
+.shadow-1 {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.shadow-2 {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+.shadow-3 {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.shadow-4 {
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
+.collapsed {
+  width: 0 !important;
+  height: 0 !important;
+}
+
+.transform-collapsed {
+  transform: scale(0);
+}
+
+.display-none {
+  display: none !important;
+}
+
+.invisible {
+  opacity: 0;
+}
+
+.loading-icon {
+  -webkit-animation: spin 1s infinite linear;
+          animation: spin 1s infinite linear;
+}
+
+@-webkit-keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.loader > h3 {
+  font-size: 2em;
+}
+
+.main-container {
+  flex-grow: 1;
+  min-height: calc(100% - 1.4vmax);
+  display: grid;
+  grid-template-columns: 33.333% 33.333% 33.333%;
+  background-color: #add;
+  padding: 0.7vmax;
+  grid-column-start: 2;
+  transition: background-color 0.2s;
+}
+@media (orientation: portrait) {
+  .main-container {
+    display: flex;
+    flex-flow: column nowrap;
+  }
+}
+
+.note-column {
+  flex-grow: 1;
+  display: inline-flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  width: 100%;
+}
+
+.note-card {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  background-color: white;
+  width: calc(100% - 1.4vmax);
+  display: inline-flex;
+  flex-flow: column nowrap;
+  margin: 0.7vmax;
+}
+
+.note-title {
+  background-color: #212121;
+  color: white;
+  padding: 0.7vw;
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Fjalla One", sans-serif;
+}
+.note-title > i {
+  font-size: 1.3em;
+}
+
+.note-menu {
+  cursor: pointer;
+}
+
+.note-body {
+  display: flex;
+  width: 100%;
+}
+.note-body > span {
+  width: 100%;
+}
+
+.note-image {
+  width: 100%;
+  cursor: pointer;
+}
+.note-image + img {
+  cursor: pointer;
+}
+
+.note-body > textarea {
+  margin: 0.7vmax;
+  width: calc(100% - 1.4vmax);
+  font-size: 12px;
+  height: calc(100% - 1.4vmax);
+  border: none;
+  resize: none;
+  border-bottom: solid 1px #cfcfcf;
+  transition: 0.3s all;
+}
+.note-body > textarea:focus {
+  outline: none;
+  border-bottom: solid 1px #212121;
+}
+
+h2 {
+  font-size: 1.2em;
+}
+
+#nav-back-arrow {
+  padding-bottom: 10px;
+}/*# sourceMappingURL=note.css.map */
