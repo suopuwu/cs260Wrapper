@@ -17,27 +17,12 @@
   <script src="/lib/suopLib.js"></script>
   <script src="/lib/mSnackbar.js"></script>
   <script src="/lib/shortcut.js"></script>
-  <script src="/lib/characterData.js"></script>
+  <script defer src="/lib/characterData.js"></script>
   <script src="/lib/note.js"></script>
 
 </head>
 
 <body>
-  <script>
-    const templateData = [{
-      content: 'example note',
-      title: 'Note Title',
-      type: 0
-    }, {
-      type: 1,
-      content: '',
-      title: 'test image'
-    }, {
-      type: 1,
-      content: 'https://picsum.photos/400/400',
-      title: 'test image 2'
-    }];
-  </script>
   <div class="nav-menu shadow-2">
     <div class="flex nav-menu-row">
       <a id="nav-back-arrow" href="/" class="ripple">
@@ -62,6 +47,56 @@
     </span>
     <span class="nav-ui">To change an image, click the image</span>
     <span class="nav-ui">To rename or delete notes, right click them</span>
+    <script defer src="/lib/vue.min.js"></script>
+
+    <div id="app" style="display: none;">
+      <h1>Character Info</h1>
+      <div class="character-info">
+
+        <span>
+
+          air speed: {{ airSpeed }}
+        </span><span>
+
+          fall speed: {{ fallSpeed }}
+        </span><span>
+
+          initial dash: {{ initialDash }}
+        </span><span>
+
+          run speed: {{ runSpeed }}
+        </span><span>
+
+          weight: {{ weight }}
+        </span>
+      </div>
+    </div>
+
+    <script defer>
+      var ready = (callback) => {
+        if (document.readyState != "loading") callback();
+        else document.addEventListener("DOMContentLoaded", callback);
+      }
+      var url = window.location.pathname.substring(1);
+      console.log(url.includes('characters'));
+      var noteHolder = url.slice((Math.max(0, url.lastIndexOf("/")) || Infinity) + 1).replaceAll('-', ' ');
+      if (url.includes('characters')) {
+        ready(() => {
+          Vue.createApp({
+            data() {
+              return {
+                airSpeed: basicCharData[noteHolder]['air speed'],
+                fallSpeed: basicCharData[noteHolder]['fall speed'],
+                initialDash: basicCharData[noteHolder]['initial dash'],
+                runSpeed: basicCharData[noteHolder]['run speed'],
+                weight: basicCharData[noteHolder]['weight'],
+              }
+            }
+          }).mount('#app');
+          $('#app').fadeIn(250);
+        });
+      }
+    </script>
     <div class="flex-grow-spacer"></div>
     <span id="sign-in-button">
       Loading... <i class="material-icons loading-icon">refresh</i>

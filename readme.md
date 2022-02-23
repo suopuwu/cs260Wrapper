@@ -1,1 +1,4 @@
 Alrighty. This project was one that I had already made. All the html and css are in the public folder. I did it like this because I didn't want to figure out firebase hosting all over again. It uses the firebase api, and I wrote the wrapper website to add the repo to the footer. Just keep in mind that as a notes app, the content it retrieves the api is content that you, the user, write into the app.
+
+As for vue, I already had page routes set up with this website, so I opted to add vue to the website as a component instead of rewriting the whole thing in vue. 
+The mock data can be found in the character pages. Except it's not really mock data, it's just the actual data. It will be in the left sidebar on character note pages. I used vue CLI by copying over relevant parts from a created project into the existing webpages.
